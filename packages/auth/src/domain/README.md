@@ -14,7 +14,7 @@ The domain layer contains **enterprise business rules**. It is the innermost lay
 ## Dependency rules
 
 - Must NOT import React, NestJS, Prisma, axios, SQLite, or any framework
-- Must NOT import from `application/`, `infrastructure/`, or `presentation/`
+- Must NOT import from `application/`, `infrastructure/`, or app/UI code
 - May import from `@ddd-store/shared` domain types
 
 ## Example
