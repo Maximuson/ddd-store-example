@@ -1,6 +1,6 @@
-import { ref, computed, onMounted, type InjectionKey } from 'vue';
+import { ref, computed, inject, type InjectionKey } from 'vue';
 import type { User } from '@ddd-store/users';
-import { useContainer } from '../di/useContainer';
+import { container } from '../di/container';
 
 const STORAGE_KEY = 'ddd-store-auth';
 
@@ -14,7 +14,7 @@ interface AuthState {
 export const authKey: InjectionKey<ReturnType<typeof createAuth>> = Symbol('auth');
 
 export function createAuth() {
-  const { loginUserUseCase, logoutSessionUseCase, getCurrentUserUseCase } = useContainer();
+  const { loginUserUseCase, logoutSessionUseCase, getCurrentUserUseCase } = container;
 
   const state = ref<AuthState>({
     user: null,
@@ -27,24 +27,25 @@ export function createAuth() {
   const user = computed(() => state.value.user);
   const isLoading = computed(() => state.value.isLoading);
 
-  onMounted(async () => {
+  async function restoreSession() {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        const { token, sessionId } = JSON.parse(stored) as {
-          token: string;
-          sessionId: string;
-        };
-        const currentUser = await getCurrentUserUseCase.execute(token);
-        state.value = { user: currentUser, token, sessionId, isLoading: false };
-      } catch {
-        localStorage.removeItem(STORAGE_KEY);
-        state.value = { user: null, token: null, sessionId: null, isLoading: false };
-      }
-    } else {
+    if (!stored) {
       state.value = { ...state.value, isLoading: false };
+      return;
     }
-  });
+
+    try {
+      const { token, sessionId } = JSON.parse(stored) as {
+        token: string;
+        sessionId: string;
+      };
+      const currentUser = await getCurrentUserUseCase.execute(token);
+      state.value = { user: currentUser, token, sessionId, isLoading: false };
+    } catch {
+      localStorage.removeItem(STORAGE_KEY);
+      state.value = { user: null, token: null, sessionId: null, isLoading: false };
+    }
+  }
 
   async function login(email: string, password: string) {
     error.value = null;
@@ -83,6 +84,8 @@ export function createAuth() {
     localStorage.removeItem(STORAGE_KEY);
     state.value = { user: null, token: null, sessionId: null, isLoading: false };
   }
+
+  void restoreSession();
 
   return { user, isLoading, error, login, logout };
 }

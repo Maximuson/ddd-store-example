@@ -26,7 +26,12 @@ export class AuthService {
     }
     try {
       const { token, sessionId } = JSON.parse(stored) as { token: string; sessionId: string };
-      const currentUser = await this.container.getCurrentUserUseCase.execute(token);
+      const currentUser = await Promise.race([
+        this.container.getCurrentUserUseCase.execute(token),
+        new Promise<null>((_, reject) =>
+          setTimeout(() => reject(new Error('Session restore timed out')), 8_000),
+        ),
+      ]);
       this.user.set(currentUser);
       this.token.set(token);
       this.sessionId.set(sessionId);

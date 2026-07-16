@@ -27,7 +27,7 @@ import {
   HttpProductRepository,
 } from '@ddd-store/catalog';
 
-const useMock = import.meta.env.VITE_USE_MOCK === 'true';
+const useMock = import.meta.env.VITE_USE_MOCK !== 'false';
 const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
 export const apiClient = createApiClient(apiUrl);

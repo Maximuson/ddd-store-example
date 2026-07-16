@@ -5,6 +5,9 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
+  define: {
+    'import.meta.env.VITE_USE_MOCK': JSON.stringify(process.env.VITE_USE_MOCK ?? 'true'),
+  },
   resolve: {
     alias: {
       '@ddd-store/shared': path.resolve(__dirname, '../../../packages/shared/src'),

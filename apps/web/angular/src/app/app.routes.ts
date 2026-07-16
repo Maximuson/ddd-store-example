@@ -1,17 +1,15 @@
 import { Routes } from '@angular/router';
-import {
-  loginPage,
-  catalogPage,
-  productPage,
-  profilePage,
-  adminPage,
-} from '@ddd-store/web-shared';
-import { authGuard } from './guards/auth.guard';
+import { loginPage } from '@ddd-store/web-shared/auth/pages';
+import { catalogPage, productPage } from '@ddd-store/web-shared/catalog/pages';
+import { profilePage } from '@ddd-store/web-shared/users/pages';
+import { adminPage } from '@ddd-store/web-shared/admin/pages';
+import { authGuard, guestGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
     path: loginPage.path,
+    canActivate: [guestGuard],
     loadComponent: () =>
       import('./features/auth/login-page.component').then((m) => m.LoginPageComponent),
   },

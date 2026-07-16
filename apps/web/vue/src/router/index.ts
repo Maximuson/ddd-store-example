@@ -1,11 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import {
-  loginPage,
-  catalogPage,
-  productPage,
-  profilePage,
-  adminPage,
-} from '@ddd-store/web-shared';
+import { loginPage } from '@ddd-store/web-shared/auth/pages';
+import { catalogPage, productPage } from '@ddd-store/web-shared/catalog/pages';
+import { profilePage } from '@ddd-store/web-shared/users/pages';
+import { adminPage } from '@ddd-store/web-shared/admin/pages';
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -50,7 +47,7 @@ export const router = createRouter({
   ],
 });
 
-router.beforeEach((to, _from, next) => {
+router.beforeEach(async (to, _from, next) => {
   const guard = to.meta.guard as string | undefined;
   const stored = localStorage.getItem('ddd-store-auth');
   const isAuthenticated = !!stored;
@@ -71,9 +68,12 @@ router.beforeEach((to, _from, next) => {
 
   if (guard === 'admin') {
     try {
-      const parsed = JSON.parse(stored!) as { token: string };
-      void parsed;
-      next();
+      const parsed = JSON.parse(stored!) as { userId?: string };
+      if (parsed.userId === 'u1') {
+        next();
+        return;
+      }
+      next(catalogPage.path);
     } catch {
       next(catalogPage.path);
     }
