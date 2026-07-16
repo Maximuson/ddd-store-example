@@ -1,11 +1,12 @@
 ---
-import { mockProductsData } from '@ddd-store/catalog';
+import { getProducts } from '../../lib/productRepository';
 import { productPage } from '@ddd-store/web-shared/catalog/pages';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductDetail from '../../components/ProductDetail.astro';
 
-export function getStaticPaths() {
-  return mockProductsData.map((product) => ({
+export async function getStaticPaths() {
+  const products = await getProducts();
+  return products.map((product) => ({
     params: { id: product.getId() },
     props: { product },
   }));

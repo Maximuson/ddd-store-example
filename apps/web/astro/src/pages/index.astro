@@ -1,10 +1,10 @@
 ---
-import { GetProductsUseCase, MockProductRepository } from '@ddd-store/catalog';
+import { getProducts } from '../lib/productRepository';
 import { catalogPage } from '@ddd-store/web-shared/catalog/pages';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CatalogGrid from '../components/CatalogGrid.astro';
 
-const products = await new GetProductsUseCase(new MockProductRepository()).execute();
+const products = await getProducts();
 ---
 
 <BaseLayout title="DDD Store (Astro)" showLogin>

@@ -1,5 +1,6 @@
 ---
 import { catalogPage } from '@ddd-store/web-shared/catalog/pages';
+import { isMockMode } from '../lib/productRepository';
 import type { Product } from '@ddd-store/catalog';
 import ProductCard from './ProductCard.astro';
 
@@ -8,10 +9,11 @@ interface Props {
 }
 
 const { products } = Astro.props;
+const dataSource = isMockMode() ? 'mock data' : 'API';
 ---
 
 <p class="text-sm text-green-800 bg-green-100 inline-block px-2 py-1 rounded-full mb-4">
-  Static catalog — build-time data via {catalogPage.id} slice
+  Static catalog — build-time {dataSource} via {catalogPage.id} slice
 </p>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   {products.map((product) => (
