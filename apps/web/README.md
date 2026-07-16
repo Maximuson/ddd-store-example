@@ -24,12 +24,14 @@ Each feature folder (`shell`, `auth`, `catalog`, `users`, `admin`) contains:
 
 Global styles: `styles/theme.css` (Tailwind v4 `@theme` tokens).
 
+Requires **Node.js** 24.18.0 (see repo `.nvmrc`).
+
 ## Dev commands
 
 ```bash
 npm run dev:web:react
 npm run dev:web:vue
-npm run dev:web:angular   # requires Node >= 22.22.3
+npm run dev:web:angular
 npm run dev:web:astro
 npm run dev:web             # alias for React
 ```
