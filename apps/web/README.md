@@ -10,7 +10,7 @@ apps/web/
 ├── react/      @ddd-store/web-react   — React 19 (port 5173)
 ├── vue/        @ddd-store/web-vue      — Vue 3.5.40 (port 5174)
 ├── angular/    @ddd-store/web-angular  — Angular 22 (port 5175)
-└── astro/      @ddd-store/web-astro    — Astro 7 (port 4321)
+└── astro/      @ddd-store/web-astro    — Astro 7 static catalog (port 4321)
 ```
 
 ## Shared slices (`@ddd-store/web-shared`)

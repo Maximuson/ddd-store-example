@@ -1,33 +1,19 @@
 ---
-import '../../styles/global.css';
-import { catalogPage, productPage } from '@ddd-store/web-shared/catalog/pages';
 import { mockProductsData } from '@ddd-store/catalog';
-import ProductIsland from '../../components/ProductIsland.vue';
+import { productPage } from '@ddd-store/web-shared/catalog/pages';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductDetail from '../../components/ProductDetail.astro';
 
 export function getStaticPaths() {
   return mockProductsData.map((product) => ({
     params: { id: product.getId() },
+    props: { product },
   }));
 }
 
-const { id } = Astro.params;
+const { product } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{productPage.title}</title>
-  </head>
-  <body class="min-h-screen bg-gray-50">
-    <nav class="bg-white border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center gap-6">
-        <a href="/" class="text-xl font-bold text-blue-600">DDD Store</a>
-        <a href={catalogPage.path} class="text-gray-600 hover:text-gray-900">Catalog</a>
-      </div>
-    </nav>
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <ProductIsland client:load id={id!} />
-    </main>
-  </body>
-</html>
+<BaseLayout title={productPage.title}>
+  <ProductDetail product={product} />
+</BaseLayout>

@@ -1,25 +1,13 @@
 ---
-import '../styles/global.css';
+import { GetProductsUseCase, MockProductRepository } from '@ddd-store/catalog';
 import { catalogPage } from '@ddd-store/web-shared/catalog/pages';
-import CatalogIsland from '../components/CatalogIsland.vue';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CatalogGrid from '../components/CatalogGrid.astro';
+
+const products = await new GetProductsUseCase(new MockProductRepository()).execute();
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{catalogPage.title}</title>
-  </head>
-  <body class="min-h-screen bg-gray-50">
-    <nav class="bg-white border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center gap-6">
-        <a href="/" class="text-xl font-bold text-blue-600">DDD Store</a>
-        <a href={catalogPage.path} class="text-gray-600 hover:text-gray-900">Catalog</a>
-      </div>
-    </nav>
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 class="text-3xl font-bold text-gray-900 mb-8">{catalogPage.title}</h1>
-      <CatalogIsland client:load />
-    </main>
-  </body>
-</html>
+<BaseLayout title={catalogPage.title}>
+  <h1 class="text-3xl font-bold text-gray-900 mb-8">{catalogPage.title}</h1>
+  <CatalogGrid products={products} />
+</BaseLayout>
