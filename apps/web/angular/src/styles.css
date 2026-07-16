@@ -1,6 +1,7 @@
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+@import "tailwindcss";
 @import "@ddd-store/web-shared/styles/theme.css";
+@source "../shared/**/*.{ts,html}";
+@source "./**/*.{ts,html}";
 
 body {
   margin: 0;
