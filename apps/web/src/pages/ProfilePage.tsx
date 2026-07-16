@@ -1,6 +1,5 @@
-import { useEffect, useMemo } from 'react';
-import { useActor } from '@xstate/react';
-import { createProfileMachine, ProfileCard, SessionList } from '@ddd-store/users';
+import { useEffect } from 'react';
+import { ProfileCard, SessionList, useProfile } from '@ddd-store/users';
 import { useContainer } from '../di/ContainerContext';
 import { useAuth } from '../app/AuthContext';
 
@@ -9,36 +8,36 @@ export function ProfilePage() {
   const { getUserProfileUseCase, listActiveSessionsUseCase, terminateSessionUseCase } =
     useContainer();
 
-  const machine = useMemo(
-    () => createProfileMachine(getUserProfileUseCase, listActiveSessionsUseCase, terminateSessionUseCase),
-    [getUserProfileUseCase, listActiveSessionsUseCase, terminateSessionUseCase],
-  );
-  const [state, send] = useActor(machine);
+  const { user: profileUser, sessions, loading, error, terminatingId, load, terminate } =
+    useProfile(getUserProfileUseCase, listActiveSessionsUseCase, terminateSessionUseCase);
 
   useEffect(() => {
-    if (user) send({ type: 'LOAD', userId: user.getId() });
-  }, [user, send]);
+    if (user) load(user.getId());
+  }, [user, load]);
 
-  if (state.matches('loading') || state.matches('idle')) {
+  if (loading) {
     return <div className="text-center py-12 text-gray-500">Loading profile...</div>;
   }
 
-  if (state.matches('error')) {
+  if (error) {
     return (
-      <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg">{state.context.error}</div>
+      <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg">{error}</div>
     );
   }
 
-  const profileUser = state.context.user!;
+  if (!profileUser) {
+    return null;
+  }
+
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
       <ProfileCard user={profileUser} />
       <SessionList
-        sessions={state.context.sessions}
+        sessions={sessions}
         currentUserAgent={navigator.userAgent}
-        onTerminate={(sessionId) => send({ type: 'TERMINATE', sessionId })}
-        isTerminating={state.context.terminatingId}
+        onTerminate={(sessionId) => terminate(sessionId, profileUser.getId())}
+        isTerminating={terminatingId}
       />
     </div>
   );

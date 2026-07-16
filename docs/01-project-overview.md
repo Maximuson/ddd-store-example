@@ -27,7 +27,7 @@ The code is written for clarity and learning value, not minimal line count.
 
 | App | Stack | Role |
 |-----|-------|------|
-| `apps/web` | React, Vite, TypeScript, XState, Tailwind | Browser client with mock/API toggle |
+| `apps/web` | React, Vite, TypeScript, xstate-store, Tailwind | Browser client with mock/API toggle |
 | `apps/mobile` | Expo, React Native, NativeWind, SQLite | Offline-first mobile client |
 | `apps/api` | NestJS, Prisma, SQLite (dev) | REST API with JWT auth |
 
@@ -35,7 +35,7 @@ The code is written for clarity and learning value, not minimal line count.
 
 - **npm workspaces** — monorepo package management
 - **TypeScript strict mode** — catch errors at compile time
-- **XState (web)** — UI state machines that invoke use cases (no business logic in stores)
+- **xstate-store (web)** — dumb UI stores (data, loading, error); hooks invoke use cases
 - **Prisma + SQLite** — simple local dev; schema is PostgreSQL-compatible for production
 - **Tailwind + NativeWind** — consistent utility-first styling
 
@@ -46,7 +46,7 @@ After exploring this repo, a Middle Frontend Developer should understand:
 1. Why repository interfaces live in the **domain** layer
 2. How **use cases** coordinate domain objects without knowing about HTTP or React
 3. How **dependency injection** swaps Mock vs Http vs Sqlite implementations
-4. How **XState machines** handle UI state while delegating business logic to use cases
+4. How **xstate-store + hooks** hold UI state while use cases handle business logic
 5. How **offline-first** mobile reads from SQLite whether online or offline
 
 ## Demo Credentials (after seed)

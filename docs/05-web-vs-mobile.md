@@ -33,7 +33,7 @@ Business logic is **identical**. Only infrastructure and presentation differ.
 
 | Platform | Approach |
 |----------|----------|
-| Web | XState machines in `packages/*/presentation/machines/` |
+| Web | xstate-store + hooks in `packages/*/presentation/stores/` and `hooks/` |
 | Mobile | React hooks + local component state (same use case invocation pattern) |
 
 Mobile does not use XState to keep dependencies lighter, but follows the same rule: **hooks invoke use cases, never repositories directly**.

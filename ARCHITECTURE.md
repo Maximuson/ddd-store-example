@@ -19,7 +19,7 @@ This is an educational full-stack monorepo demonstrating:
 ### Applications
 
 ```
-apps/web     → React + Vite + XState + Tailwind
+apps/web     → React + Vite + xstate-store + Tailwind
 apps/mobile  → Expo + SQLite + NativeWind
 apps/api     → NestJS + Prisma + SQLite
 ```
@@ -108,16 +108,19 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   participant Page as CatalogPage
-  participant Machine as catalogMachine
+  participant Hook as useCatalog
+  participant Store as catalogStore
   participant UC as GetProductsUseCase
   participant Repo as MockProductRepository
 
-  Page->>Machine: mount (initial: loading)
-  Machine->>UC: execute()
+  Page->>Hook: mount → fetch()
+  Hook->>Store: setLoading()
+  Hook->>UC: execute()
   UC->>Repo: getProducts()
   Repo-->>UC: Product[]
-  UC-->>Machine: success
-  Machine-->>Page: render ProductList
+  UC-->>Hook: products
+  Hook->>Store: setData()
+  Store-->>Page: render ProductList
 ```
 
 ### Mobile Offline Read
@@ -215,10 +218,11 @@ infrastructure/database/SqliteProductRepository.ts ← mobile offline
 
 ### Presentation (`presentation/`)
 
-UI code. XState machines invoke use cases — never HTTP directly.
+UI code. Stores hold data/loading/error; hooks invoke use cases — never HTTP directly.
 
 ```
-presentation/machines/catalogMachine.ts
+presentation/stores/catalogStore.ts
+presentation/hooks/useCatalog.ts
 presentation/components/ProductList.tsx
 ```
 
@@ -285,7 +289,7 @@ CREATE TABLE sync_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 | Session expiry | 24h (`expiresAt` set) | No auto-expire (`expiresAt: null`) |
 | Token storage | localStorage | SQLite `auth_tokens` table |
 | Data source | HTTP or Mock | SQLite (synced from HTTP) |
-| State management | XState machines | React hooks + use cases |
+| State management | xstate-store + hooks | React hooks + use cases |
 | Offline support | No (mock mode instead) | Yes, with stale-data banner |
 | Styling | Tailwind CSS | NativeWind |
 

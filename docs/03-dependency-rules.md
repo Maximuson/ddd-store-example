@@ -63,7 +63,7 @@ export class HttpProductRepository implements ProductRepository {
 
 ### Presentation Layer (`presentation/`)
 
-**Contains:** React components, XState machines, hooks
+**Contains:** React components, xstate-store stores, hooks
 
 **Depends on:** Application (use cases) + Domain (types)
 
@@ -100,7 +100,7 @@ The application layer never knows which implementation is injected.
 
 1. **Putting axios in a use case** — use cases call repository interfaces, not HTTP
 2. **Importing MockRepository in presentation** — wire via DI container in `apps/`
-3. **Business validation in XState machine** — machines handle UI states; use cases validate
+3. **Business validation in a hook** — hooks orchestrate use cases; use cases validate
 4. **Domain entity with `@Column()` decorator** — keep ORM annotations in infrastructure mappers
 5. **Circular imports between packages** — `shared` is the only shared kernel; contexts don't import each other
 
