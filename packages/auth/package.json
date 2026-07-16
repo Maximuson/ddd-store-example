@@ -6,7 +6,7 @@
   "types": "./src/index.ts",
   "scripts": {
     "build": "tsc",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint src --ext .ts,.tsx"
   },
   "dependencies": {
@@ -14,14 +14,15 @@
     "@ddd-store/users": "*"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "react": "^18.2.0",
-    "typescript": "^5.4.0",
-    "vitest": "^1.4.0",
-    "xstate": "^5.9.0",
-    "@xstate/react": "^4.1.0"
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10",
+    "xstate": "^5.32.5",
+    "@xstate/react": "^6.1.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^19.2.7"
   }
 }

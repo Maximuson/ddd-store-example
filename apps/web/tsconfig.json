@@ -6,7 +6,8 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
-    "composite": false
+    "composite": false,
+    "types": ["vite/client"]
   },
   "include": ["src"]
 }
