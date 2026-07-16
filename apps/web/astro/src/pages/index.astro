@@ -1,35 +1,22 @@
 ---
-import '../styles/global.css';
+import { getProducts } from '../lib/productRepository';
 import { catalogPage } from '@ddd-store/web-shared/catalog/pages';
-import CatalogIsland from '../components/CatalogIsland.vue';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CatalogGrid from '../components/CatalogGrid.astro';
+
+const products = await getProducts();
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DDD Store (Astro)</title>
-  </head>
-  <body class="min-h-screen bg-gray-50">
-    <nav class="bg-white border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center gap-6">
-        <a href="/" class="text-xl font-bold text-blue-600">DDD Store</a>
-        <a href={catalogPage.path} class="text-gray-600 hover:text-gray-900">Catalog</a>
-        <a href="/login" class="text-gray-600 hover:text-gray-900">Login</a>
-      </div>
-    </nav>
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <section class="mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Multi-Framework DDD Store</h1>
-        <p class="text-gray-600 max-w-2xl">
-          Astro 7 showcase using shared vertical slices from <code>@ddd-store/web-shared</code>.
-          Interactive catalog runs as a Vue island.
-        </p>
-      </section>
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">{catalogPage.title}</h2>
-        <CatalogIsland client:load />
-      </section>
-    </main>
-  </body>
-</html>
+<BaseLayout title="DDD Store (Astro)" showLogin>
+  <section class="mb-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Multi-Framework DDD Store</h1>
+    <p class="text-gray-600 max-w-2xl">
+      Astro 7 showcase using shared vertical slices from <code>@ddd-store/web-shared</code>.
+      Catalog is fully static — product data is generated at build time.
+    </p>
+  </section>
+  <section>
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">{catalogPage.title}</h2>
+    <CatalogGrid products={products} />
+  </section>
+</BaseLayout>

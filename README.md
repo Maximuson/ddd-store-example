@@ -69,7 +69,7 @@ ddd-store-example/
 │       ├── react/           @ddd-store/web-react   — React 19 + Vite (5173)
 │       ├── vue/             @ddd-store/web-vue      — Vue 3.5 + Vite (5174)
 │       ├── angular/         @ddd-store/web-angular  — Angular 22 (5175)
-│       └── astro/           @ddd-store/web-astro   — Astro 7 + Vue islands (4321)
+│       └── astro/           @ddd-store/web-astro   — Astro 7 static catalog (4321)
 ├── packages/
 │   ├── shared/              Cross-cutting domain primitives
 │   ├── auth/                Authentication bounded context
@@ -91,7 +91,7 @@ The browser layer uses **Variant B** architecture:
 Feature slices in `apps/web/shared`: `shell`, `auth`, `catalog`, `users`, `admin`.
 
 - **React / Vue / Angular** — full SPA with auth, catalog, profile, and admin flows
-- **Astro** — static pages with Vue islands for catalog and product detail (mock data)
+- **Astro** — fully static catalog and product pages (build-time mock data)
 
 See [apps/web/README.md](apps/web/README.md) for web-specific commands and conventions.
 
