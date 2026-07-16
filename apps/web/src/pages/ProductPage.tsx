@@ -1,35 +1,36 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useActor } from '@xstate/react';
-import { createProductMachine } from '@ddd-store/catalog';
+import { useProduct } from '@ddd-store/catalog';
 import { useContainer } from '../di/ContainerContext';
 
 export function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const { getProductByIdUseCase } = useContainer();
-  const machine = useMemo(() => createProductMachine(getProductByIdUseCase), [getProductByIdUseCase]);
-  const [state, send] = useActor(machine);
+  const { product, loading, error, fetch } = useProduct(getProductByIdUseCase);
 
   useEffect(() => {
-    if (id) send({ type: 'FETCH', id });
-  }, [id, send]);
+    if (id) fetch(id);
+  }, [id, fetch]);
 
-  if (state.matches('loading') || state.matches('idle')) {
+  if (loading) {
     return <div className="text-center py-12 text-gray-500">Loading product...</div>;
   }
 
-  if (state.matches('error')) {
+  if (error) {
     return (
       <div>
         <Link to="/catalog" className="text-blue-600 hover:underline mb-4 inline-block">
           ← Back to catalog
         </Link>
-        <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg">{state.context.error}</div>
+        <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg">{error}</div>
       </div>
     );
   }
 
-  const product = state.context.product!;
+  if (!product) {
+    return null;
+  }
+
   return (
     <div>
       <Link to="/catalog" className="text-blue-600 hover:underline mb-6 inline-block">

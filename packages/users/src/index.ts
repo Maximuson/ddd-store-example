@@ -21,4 +21,6 @@ export { mapSessionDtoToEntity, type SessionDto } from './infrastructure/mappers
 
 // Presentation
 export { ProfileCard, SessionList } from './presentation/components/ProfileCard';
-export { createProfileMachine } from './presentation/machines/profileMachine';
+export { profileStoreLogic } from './presentation/stores/profileStore';
+export type { ProfileData } from './presentation/stores/profileStore';
+export { useProfile } from './presentation/hooks/useProfile';

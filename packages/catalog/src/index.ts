@@ -22,5 +22,7 @@ export { mapProductDtoToEntity, type ProductDto } from './infrastructure/mappers
 
 // Presentation
 export { ProductCard, ProductList } from './presentation/components/ProductList';
-export { createCatalogMachine } from './presentation/machines/catalogMachine';
-export { createProductMachine } from './presentation/machines/productMachine';
+export { catalogStoreLogic } from './presentation/stores/catalogStore';
+export { productStoreLogic } from './presentation/stores/productStore';
+export { useCatalog } from './presentation/hooks/useCatalog';
+export { useProduct } from './presentation/hooks/useProduct';

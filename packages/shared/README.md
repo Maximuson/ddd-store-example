@@ -7,4 +7,4 @@ Bounded context package for **ushared**. See layer READMEs inside `src/` for arc
 - `src/domain/` — entities, value objects, repository interfaces
 - `src/application/` — use cases
 - `src/infrastructure/` — HTTP, SQLite, mock implementations
-- `src/presentation/` — React components, XState machines
+- `src/presentation/` — shared store utilities (`createAsyncStoreLogic`)

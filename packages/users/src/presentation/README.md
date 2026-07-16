@@ -1,14 +1,14 @@
-# Presentation Layer — uusers
+# Presentation Layer — users
 
 ## Purpose
 
-The presentation layer contains **UI-specific code** — components, hooks, and state machines.
+The presentation layer contains **UI-specific code** — components, hooks, and stores.
 
 ## What belongs here
 
 - **React components** — forms, lists, cards
-- **XState machines** — UI state (loading, error, success) that invoke use cases
-- **Hooks** — connect components to machines/use cases
+- **xstate-store stores** — dumb state containers (data, loading, error only)
+- **Hooks** — call use cases and update stores
 
 ## Dependency rules
 
@@ -19,18 +19,24 @@ The presentation layer contains **UI-specific code** — components, hooks, and 
 ## Example
 
 ```typescript
-// XState machine invokes use case — never calls HTTP directly
-submitting: {
-  invoke: {
-    src: async (_, event) => loginUseCase.execute(event.credentials),
-    onDone: { target: 'authenticated' },
-    onError: { target: 'error' },
-  },
-}
+// Hook calls use cases, store only holds state
+const load = useCallback(async (userId: string) => {
+  store.trigger.setLoading();
+  try {
+    const [user, sessions] = await Promise.all([
+      getUserProfileUseCase.execute(userId),
+      listActiveSessionsUseCase.execute(userId),
+    ]);
+    store.trigger.setData({ data: { user, sessions } });
+  } catch (e) {
+    store.trigger.setError({ error: e.message });
+  }
+}, [store, getUserProfileUseCase, listActiveSessionsUseCase]);
 ```
 
 ## Common mistakes
 
-1. Putting axios calls in components or machines
+1. Putting axios calls in components or hooks without use cases
 2. Duplicating business rules in form validation
 3. Importing MockRepository in components
+4. Putting async logic or use-case calls inside store definitions

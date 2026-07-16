@@ -7,4 +7,4 @@ Bounded context package for **uusers**. See layer READMEs inside `src/` for arch
 - `src/domain/` — entities, value objects, repository interfaces
 - `src/application/` — use cases
 - `src/infrastructure/` — HTTP, SQLite, mock implementations
-- `src/presentation/` — React components, XState machines
+- `src/presentation/` — React components, xstate-store stores, hooks

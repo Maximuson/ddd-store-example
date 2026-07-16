@@ -41,8 +41,8 @@ packages/<context>/
     │   └── mappers/         # DTO ↔ Entity mapping
     └── presentation/        # UI-specific code (shared across web/mobile where possible)
         ├── components/
-        ├── hooks/
-        └── machines/        # XState machines (web)
+        ├── hooks/             # Call use cases, update stores
+        └── stores/            # xstate-store (data, loading, error only)
 ```
 
 ## API Module Structure

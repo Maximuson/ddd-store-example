@@ -1,14 +1,13 @@
-# Presentation Layer — uauth
+# Presentation Layer — auth
 
 ## Purpose
 
-The presentation layer contains **UI-specific code** — components, hooks, and state machines.
+The presentation layer contains **UI-specific code** — components and hooks.
 
 ## What belongs here
 
 - **React components** — forms, lists, cards
-- **XState machines** — UI state (loading, error, success) that invoke use cases
-- **Hooks** — connect components to machines/use cases
+- **Hooks** — connect components to use cases (auth state lives in app-level AuthContext)
 
 ## Dependency rules
 
@@ -19,18 +18,15 @@ The presentation layer contains **UI-specific code** — components, hooks, and 
 ## Example
 
 ```typescript
-// XState machine invokes use case — never calls HTTP directly
-submitting: {
-  invoke: {
-    src: async (_, event) => loginUseCase.execute(event.credentials),
-    onDone: { target: 'authenticated' },
-    onError: { target: 'error' },
-  },
-}
+// AuthContext calls use cases — never HTTP directly
+const login = async (email: string, password: string) => {
+  const result = await loginUserUseCase.execute({ email, password, ... });
+  setState({ user, token: result.token.accessToken, ... });
+};
 ```
 
 ## Common mistakes
 
-1. Putting axios calls in components or machines
+1. Putting axios calls in components
 2. Duplicating business rules in form validation
 3. Importing MockRepository in components

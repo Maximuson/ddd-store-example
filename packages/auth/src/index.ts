@@ -16,4 +16,3 @@ export { HttpAuthRepository } from './infrastructure/api/HttpAuthRepository';
 
 // Presentation
 export { LoginForm } from './presentation/components/LoginForm';
-export { createAuthMachine } from './presentation/machines/authMachine';

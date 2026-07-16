@@ -5,11 +5,9 @@
 ```
 User submits form
     ↓
-LoginForm component dispatches XState event
+LoginForm → AuthContext.login()
     ↓
-authMachine → state: submitting
-    ↓
-invokes LoginUserUseCase.execute(credentials)
+LoginUserUseCase.execute(credentials)
     ↓
 AuthRepository.login()  [HttpAuthRepository or MockAuthRepository]
     ↓
@@ -17,7 +15,7 @@ API POST /auth/login  →  creates Session with expiresAt
     ↓
 Returns AuthToken + User
     ↓
-authMachine → state: authenticated
+AuthContext updates user + token
     ↓
 Router redirects to /catalog
 ```
@@ -27,15 +25,15 @@ Router redirects to /catalog
 ```
 /catalog page mounts
     ↓
-catalogMachine → state: loading
+useCatalog hook → store.trigger.setLoading()
     ↓
-invokes GetProductsUseCase.execute()
+GetProductsUseCase.execute()
     ↓
 ProductRepository.getProducts()  [MockProductRepository]
     ↓
 Returns in-memory Product[]
     ↓
-catalogMachine → state: success
+store.trigger.setData({ data: products })
     ↓
 ProductList renders products
 ```
@@ -49,8 +47,9 @@ Same flow, but `HttpProductRepository` calls `GET /api/products` and maps JSON t
 ```
 /profile page mounts
     ↓
-profileMachine loads user via GetUserProfileUseCase
-sessionsMachine loads via ListActiveSessionsUseCase
+useProfile hook loads user + sessions via use cases
+    ↓
+GetUserProfileUseCase + ListActiveSessionsUseCase
     ↓
 SessionRepository.getActiveSessions(userId)
     ↓
@@ -65,6 +64,8 @@ TerminateSessionUseCase.execute(sessionId)
 SessionRepository.terminate(sessionId)
     ↓
 DELETE /sessions/:id
+    ↓
+useProfile reloads profile data
 ```
 
 ## 5. Admin Product CRUD
@@ -74,7 +75,7 @@ DELETE /sessions/:id
     ↓
 Role guard checks user.role === 'ADMIN'
     ↓
-adminMachine manages product list state
+useCatalog hook manages product list state
     ↓
 CreateProductUseCase / UpdateProductUseCase / DeleteProductUseCase
     ↓

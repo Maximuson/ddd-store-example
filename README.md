@@ -45,7 +45,7 @@ EXPO_PUBLIC_USE_MOCK=true npm run dev:mobile
 ```
 apps/
   api/      NestJS REST API
-  web/      React + Vite + XState
+  web/      React + Vite + xstate-store
   mobile/   Expo + SQLite offline-first
 packages/
   shared/   Cross-cutting domain primitives
