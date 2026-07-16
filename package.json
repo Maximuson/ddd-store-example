@@ -5,8 +5,7 @@
     "apps/api",
     "apps/mobile",
     "apps/web/*",
-    "packages/*",
-    "documentation"
+    "packages/*"
   ],
   "scripts": {
     "dev:api": "npm run dev -w @ddd-store/api",
@@ -23,8 +22,8 @@
     "db:generate": "npm run db:generate -w @ddd-store/api",
     "db:migrate": "npm run db:migrate -w @ddd-store/api",
     "db:seed": "npm run db:seed -w @ddd-store/api",
-    "dev:docs": "npm run start -w documentation",
-    "build:docs": "npm run build -w documentation"
+    "dev:docs": "npm run start --prefix documentation",
+    "build:docs": "npm run build --prefix documentation"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.64.0",
