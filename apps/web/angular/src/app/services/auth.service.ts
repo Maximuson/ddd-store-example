@@ -7,6 +7,8 @@ const STORAGE_KEY = 'ddd-store-auth';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly container = inject(CONTAINER);
+  private resolveReady!: () => void;
+  readonly whenReady: Promise<void>;
 
   readonly user = signal<User | null>(null);
   readonly token = signal<string | null>(null);
@@ -15,6 +17,9 @@ export class AuthService {
   readonly error = signal<string | null>(null);
 
   constructor() {
+    this.whenReady = new Promise<void>((resolve) => {
+      this.resolveReady = resolve;
+    });
     void this.restoreSession();
   }
 
@@ -22,6 +27,7 @@ export class AuthService {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) {
       this.isLoading.set(false);
+      this.resolveReady();
       return;
     }
     try {
@@ -39,6 +45,7 @@ export class AuthService {
       localStorage.removeItem(STORAGE_KEY);
     } finally {
       this.isLoading.set(false);
+      this.resolveReady();
     }
   }
 

@@ -3,28 +3,22 @@ import { CanActivateFn, Router } from '@angular/router';
 import { loginPage } from '@ddd-store/web-shared/auth/pages';
 import { catalogPage } from '@ddd-store/web-shared/catalog/pages';
 import { AuthService } from '../services/auth.service';
-
-async function waitForAuthReady(auth: AuthService, maxMs = 10_000) {
-  const deadline = Date.now() + maxMs;
-  while (auth.isLoading() && Date.now() < deadline) {
-    await new Promise((resolve) => setTimeout(resolve, 16));
-  }
-}
+import { routePath } from '../route-path';
 
 export const authGuard: CanActivateFn = async () => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  await waitForAuthReady(auth);
+  await auth.whenReady;
   if (auth.user()) return true;
-  return router.createUrlTree([loginPage.path]);
+  return router.createUrlTree([routePath(loginPage.path)]);
 };
 
 export const guestGuard: CanActivateFn = async () => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  await waitForAuthReady(auth);
-  if (auth.user()) return router.createUrlTree([catalogPage.path]);
+  await auth.whenReady;
+  if (auth.user()) return router.createUrlTree([routePath(catalogPage.path)]);
   return true;
 };

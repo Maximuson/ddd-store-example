@@ -5,10 +5,14 @@ import { profilePage } from '@ddd-store/web-shared/users/pages';
 import { adminPage } from '@ddd-store/web-shared/admin/pages';
 import { authGuard, guestGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
+import { routePath } from './route-path';
+
+const catalogRoute = routePath(catalogPage.path);
+const loginRoute = routePath(loginPage.path);
 
 export const routes: Routes = [
   {
-    path: loginPage.path,
+    path: loginRoute,
     canActivate: [guestGuard],
     loadComponent: () =>
       import('./features/auth/login-page.component').then((m) => m.LoginPageComponent),
@@ -19,7 +23,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: catalogPage.path.replace(/^\//, ''),
+        path: catalogRoute,
         loadComponent: () =>
           import('./features/catalog/catalog-page.component').then((m) => m.CatalogPageComponent),
       },
@@ -29,18 +33,18 @@ export const routes: Routes = [
           import('./features/catalog/product-page.component').then((m) => m.ProductPageComponent),
       },
       {
-        path: profilePage.path.replace(/^\//, ''),
+        path: routePath(profilePage.path),
         loadComponent: () =>
           import('./features/users/profile-page.component').then((m) => m.ProfilePageComponent),
       },
       {
-        path: adminPage.path.replace(/^\//, ''),
+        path: routePath(adminPage.path),
         canActivate: [adminGuard],
         loadComponent: () =>
           import('./features/admin/admin-page.component').then((m) => m.AdminPageComponent),
       },
-      { path: '', redirectTo: catalogPage.path.replace(/^\//, ''), pathMatch: 'full' },
+      { path: '', redirectTo: catalogRoute, pathMatch: 'full' },
     ],
   },
-  { path: '**', redirectTo: catalogPage.path.replace(/^\//, '') },
+  { path: '**', redirectTo: loginRoute },
 ];
