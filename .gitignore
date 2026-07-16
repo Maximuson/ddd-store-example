@@ -6,9 +6,11 @@ apps/web/.env
 apps/mobile/.env
 dist
 coverage
+*.tsbuildinfo
 *.db
 *.db-journal
 .expo
 .turbo
 apps/api/prisma/dev.db
 apps/api/prisma/dev.db-journal
+apps/api/prisma/generated

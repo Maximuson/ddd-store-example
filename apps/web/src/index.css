@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../../packages/**/src/**/*.{js,ts,jsx,tsx}";
 
 body {
   margin: 0;
