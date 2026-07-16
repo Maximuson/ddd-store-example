@@ -6,15 +6,13 @@
     "hoistingLimits": "workspaces"
   },
   "scripts": {
-    "prebuild": "node ./scripts/ensure-angular-ts.mjs",
-    "predev": "node ./scripts/ensure-angular-ts.mjs",
-    "dev": "node ./scripts/ensure-angular-ts.mjs && ng serve",
-    "build": "node ./scripts/ensure-angular-ts.mjs && ng build",
+    "dev": "ng serve",
+    "build": "ng build",
     "preview": "ng serve --configuration production",
     "lint": "eslint src --ext .ts"
   },
   "engines": {
-    "node": ">=22.22.3"
+    "node": ">=24"
   },
   "dependencies": {
     "@angular/common": "^22.0.0",

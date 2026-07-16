@@ -2,6 +2,9 @@
   "name": "@ddd-store/web-astro",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=24"
+  },
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -23,6 +26,6 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.2",
     "tailwindcss": "^4.3.2",
-    "typescript": "^7.0.2"
+    "typescript": "~6.0.3"
   }
 }

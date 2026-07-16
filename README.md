@@ -2,6 +2,11 @@
 
 Educational monorepo demonstrating **Domain Driven Design**, **Clean Architecture**, and **offline-first mobile** patterns.
 
+## Prerequisites
+
+- **Node.js** >= 24 (see `.nvmrc`)
+- **TypeScript** 6.x (workspace root devDependency)
+
 ## Quick Start
 
 ```bash
@@ -11,7 +16,7 @@ npm install
 # Start web apps (mock mode by default)
 npm run dev:web              # React (port 5173)
 npm run dev:web:vue          # Vue (port 5174)
-npm run dev:web:angular      # Angular (port 5175, Node >= 22.22.3)
+npm run dev:web:angular      # Angular (port 5175)
 npm run dev:web:astro        # Astro (port 4321)
 
 # Start API (port 3000)
