@@ -13,6 +13,12 @@ Educational monorepo demonstrating **Domain Driven Design**, **Clean Architectur
 # Install dependencies
 npm install
 
+# Copy env examples for each web app (required before first run)
+cp apps/web/react/.env.example apps/web/react/.env
+cp apps/web/vue/.env.example apps/web/vue/.env
+cp apps/web/angular/.env.example apps/web/angular/.env
+cp apps/web/astro/.env.example apps/web/astro/.env
+
 # Start web apps (mock mode by default)
 npm run dev:web              # React (port 5173)
 npm run dev:web:vue          # Vue (port 5174)
@@ -26,8 +32,7 @@ npm run dev:api
 npm run dev:mobile
 ```
 
-Environment files are in each app folder: `apps/api/.env`, `apps/web/react/.env`, `apps/mobile/.env`.
-See `.env.example` for reference.
+Environment files live in each app folder. Web apps use `apps/web/<framework>/.env` (copy from `.env.example` in the same folder). API and mobile: see the root [`.env.example`](.env.example).
 
 ## Mock Mode
 
