@@ -32,7 +32,7 @@ export class HttpProductRepository implements ProductRepository {
 
 1. Leaking HTTP response types into use cases
 2. Putting business validation in mappers
-3. Importing infrastructure from presentation layer directly (use DI container)
+3. Importing infrastructure from app/UI code directly (use DI container)
 
 ## DDD connection
 

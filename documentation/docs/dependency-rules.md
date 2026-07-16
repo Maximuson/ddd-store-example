@@ -65,13 +65,13 @@ export class HttpProductRepository implements ProductRepository {
 }
 ```
 
-### Presentation Layer (`presentation/`)
-
-**In bounded-context packages:** legacy folder; React web UI has moved to `apps/web/shared` and framework apps.
+### Presentation Layer (in `apps/`)
 
 **In `apps/web/shared/<slice>/`:** framework-agnostic `pages/`, `logic/`, `spec/`
 
 **In framework apps:** `features/<slice>/` components and hooks
+
+**In `apps/api`:** `presentation/` controllers and request DTOs
 
 **Depends on:** Application (use cases) + Domain (types)
 

@@ -7,4 +7,3 @@ Bounded context package for **ucatalog**. See layer READMEs inside `src/` for ar
 - `src/domain/` — entities, value objects, repository interfaces
 - `src/application/` — use cases
 - `src/infrastructure/` — HTTP, SQLite, mock implementations
-- `src/presentation/` — React components, xstate-store stores, hooks

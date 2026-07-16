@@ -13,7 +13,7 @@ This is an educational full-stack monorepo demonstrating:
 | Concept | Implementation |
 |---------|----------------|
 | Domain Driven Design | Bounded contexts in `packages/auth`, `packages/users`, `packages/catalog` |
-| Clean Architecture | `domain` → `application` → `infrastructure` → `presentation` per package |
+| Clean Architecture | `domain` → `application` → `infrastructure` in packages; UI in `apps/` |
 | Vertical Slices | Feature folders in `apps/web/*/src/features/` and `apps/mobile/src/features/` |
 | Monorepo | npm workspaces sharing business logic across web, mobile, API |
 | Repository Pattern | Interfaces in domain, implementations in infrastructure |
@@ -66,11 +66,10 @@ flowchart TB
 
   subgraph layers [Clean Architecture per package]
     direction TB
-    P[presentation]
     A[application]
     D[domain]
     I[infrastructure]
-    P --> A --> D
+    A --> D
     I --> D
   end
 ```
@@ -81,10 +80,9 @@ flowchart TB
 
 | Layer | May import | Must NOT import |
 |-------|-----------|-----------------|
-| `domain` | domain, shared | application, infrastructure, presentation, frameworks |
-| `application` | domain, application | infrastructure, presentation, HTTP, React |
-| `infrastructure` | domain, application | presentation |
-| `presentation` | domain, application | infrastructure (use DI instead) |
+| `domain` | domain, shared | application, infrastructure, frameworks, app/UI code |
+| `application` | domain, application | infrastructure, HTTP, React |
+| `infrastructure` | domain, application | app/UI code |
 | `apps/*` | everything | — (composition root) |
 
 ---
@@ -224,14 +222,14 @@ infrastructure/mocks/MockProductRepository.ts    ← dev without backend
 infrastructure/database/SqliteProductRepository.ts ← mobile offline
 ```
 
-### Presentation (`presentation/`)
+### Presentation (in `apps/`)
 
-UI code. Stores hold data/loading/error; hooks invoke use cases — never HTTP directly.
+UI code lives in applications, not in bounded-context packages. Stores hold data/loading/error; hooks invoke use cases — never HTTP directly.
 
 ```
-presentation/stores/catalogStore.ts
-presentation/hooks/useCatalog.ts
-presentation/components/ProductList.tsx
+apps/web/shared/catalog/logic/catalogStore.ts
+apps/web/react/src/features/catalog/hooks/useCatalog.ts
+apps/web/react/src/features/catalog/components/ProductList.tsx
 ```
 
 ---

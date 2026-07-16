@@ -43,7 +43,6 @@ packages/<context>/
     │   ├── database/        # SQLite repositories (mobile)
     │   ├── mocks/           # In-memory repositories (dev/mock mode)
     │   └── mappers/         # DTO ↔ Entity mapping
-    └── presentation/        # Legacy folder; web UI moved to apps/web/shared + framework apps
 ```
 
 ## API Module Structure
