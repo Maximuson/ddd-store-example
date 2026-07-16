@@ -9,7 +9,7 @@ ddd-store-example/
 ├── docs/                    # Pre-implementation architecture documentation
 ├── apps/
 │   ├── api/                 # NestJS REST API
-│   ├── web/                 # React + Vite browser app
+│   ├── web/                 # Multi-framework browser apps (react, vue, angular, astro, shared)
 │   └── mobile/              # Expo React Native app
 └── packages/
     ├── shared/              # Cross-cutting domain primitives
@@ -39,10 +39,7 @@ packages/<context>/
     │   ├── database/        # SQLite repositories (mobile)
     │   ├── mocks/           # In-memory repositories (dev/mock mode)
     │   └── mappers/         # DTO ↔ Entity mapping
-    └── presentation/        # UI-specific code (shared across web/mobile where possible)
-        ├── components/
-        ├── hooks/             # Call use cases, update stores
-        └── stores/            # xstate-store (data, loading, error only)
+    └── presentation/        # Legacy folder; web UI moved to apps/web/shared + framework apps
 ```
 
 ## API Module Structure
@@ -58,11 +55,27 @@ apps/api/src/modules/<module>/
 ## Web App Structure
 
 ```
-apps/web/src/
-├── app/                     # App shell, router, providers
-├── di/                      # Dependency injection container
-├── features/                # Vertical slices (thin page-level glue)
-└── pages/                   # Route page components
+apps/web/
+├── shared/                  # @ddd-store/web-shared vertical slices
+│   ├── styles/theme.css
+│   ├── shell/               # PageDefinition, route guards
+│   ├── auth/                # pages, logic, spec
+│   ├── catalog/
+│   ├── users/
+│   └── admin/
+├── react/src/features/      # React UI per slice
+├── vue/src/features/        # Vue UI per slice
+├── angular/src/app/features/
+└── astro/src/pages/         # Static pages + Vue islands
+```
+
+Each runnable web app has:
+
+```
+apps/web/<framework>/src/
+├── app/ or router/          # Shell, routing, auth
+├── di/                      # DI container (composition root)
+└── features/<slice>/        # Framework-native UI implementing shared spec
 ```
 
 ## Mobile App Structure

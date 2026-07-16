@@ -33,17 +33,18 @@ Business logic is **identical**. Only infrastructure and presentation differ.
 
 | Platform | Approach |
 |----------|----------|
-| Web | xstate-store + hooks in `packages/*/presentation/stores/` and `hooks/` |
+| Web (all frameworks) | xstate-store logic in `@ddd-store/web-shared/<slice>/logic` + framework hooks |
 | Mobile | React hooks + local component state (same use case invocation pattern) |
-
-Mobile does not use XState to keep dependencies lighter, but follows the same rule: **hooks invoke use cases, never repositories directly**.
 
 ## UI Framework
 
 | Platform | Styling | Routing |
 |----------|---------|---------|
-| Web | Tailwind CSS | React Router (`/catalog`, `/profile`, `/admin`) |
-| Mobile | NativeWind | Expo Router (`catalog`, `product/[id]`, `profile`) |
+| Web React | Tailwind CSS v4 | React Router 7 |
+| Web Vue | Tailwind CSS v4 | Vue Router 4 |
+| Web Angular | Tailwind CSS v4 | Angular Router 22 |
+| Web Astro | Tailwind CSS v4 | File-based routes + Vue islands |
+| Mobile | NativeWind | Expo Router |
 
 ## Offline Support
 
