@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Architecture
 
 Comprehensive architecture reference for the **DDD Store Example** monorepo.
@@ -365,8 +369,8 @@ npm run dev:mobile
 
 ## Further Reading
 
-- [docs/01-project-overview.md](docs/01-project-overview.md)
-- [docs/03-dependency-rules.md](docs/03-dependency-rules.md)
-- [docs/04-data-flows.md](docs/04-data-flows.md)
-- [docs/06-offline-first.md](docs/06-offline-first.md)
+- [Project Overview](./project-overview)
+- [Dependency Rules](./dependency-rules)
+- [Data Flows](./data-flows)
+- [Offline-First](./offline-first)
 - Layer READMEs in each `packages/*/src/*/README.md`

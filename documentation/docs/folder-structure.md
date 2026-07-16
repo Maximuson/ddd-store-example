@@ -1,12 +1,16 @@
+---
+sidebar_position: 3
+---
+
 # Folder Structure
 
 Annotated directory tree for the monorepo. Every major folder contains a `README.md` explaining its purpose.
 
 ```
 ddd-store-example/
-├── ARCHITECTURE.md          # Final consolidated architecture reference (written last)
 ├── README.md                # Setup instructions and learning guide
-├── docs/                    # Pre-implementation architecture documentation
+├── documentation/           # Docusaurus documentation site
+│   └── docs/                # Architecture documentation (this site)
 ├── apps/
 │   ├── api/                 # NestJS REST API
 │   ├── web/                 # Multi-framework browser apps (react, vue, angular, astro, shared)

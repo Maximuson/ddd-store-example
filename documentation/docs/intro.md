@@ -1,8 +1,11 @@
-# DDD Store Example
+---
+sidebar_position: 0
+slug: /intro
+---
+
+# Getting Started
 
 Educational monorepo demonstrating **Domain Driven Design**, **Clean Architecture**, **multi-framework web clients**, and **offline-first mobile** patterns.
-
-**Documentation:** [https://maximuson.github.io/ddd-store-example/](https://maximuson.github.io/ddd-store-example/) (source in [`documentation/`](documentation/))
 
 ## Prerequisites
 
@@ -35,7 +38,7 @@ npm run dev:api
 npm run dev:mobile
 ```
 
-Environment files live in each app folder. Web apps use `apps/web/<framework>/.env` (copy from `.env.example` in the same folder). API and mobile: see the root [`.env.example`](.env.example).
+Environment files live in each app folder. Web apps use `apps/web/<framework>/.env` (copy from `.env.example` in the same folder). API and mobile: see the root `.env.example`.
 
 ## Mock Mode
 
@@ -95,18 +98,16 @@ Feature slices in `apps/web/shared`: `shell`, `auth`, `catalog`, `users`, `admin
 - **React / Vue / Angular** — full SPA with auth, catalog, profile, and admin flows
 - **Astro** — fully static catalog and product pages (build-time mock data)
 
-See [apps/web/README.md](apps/web/README.md) for web-specific commands and conventions.
-
 ## Learning Path
 
-1. Read the [Project Overview](https://maximuson.github.io/ddd-store-example/docs/project-overview)
-2. Read [Dependency Rules](https://maximuson.github.io/ddd-store-example/docs/dependency-rules)
+1. Read [Project Overview](./project-overview)
+2. Read [Dependency Rules](./dependency-rules)
 3. Explore `packages/catalog/src/domain/` — pure business entities
 4. Explore `packages/catalog/src/application/use-cases/` — business workflows
 5. Explore `apps/web/shared/catalog/` — shared route metadata and store logic
 6. Explore `apps/web/react/src/di/container.ts` — dependency injection (mock vs HTTP)
 7. Compare the same catalog feature across `apps/web/react`, `apps/web/vue`, and `apps/web/angular`
-8. Read [Architecture](https://maximuson.github.io/ddd-store-example/docs/architecture) for the full picture
+8. Read [Architecture](./architecture) for the full picture
 
 ## Scripts
 
