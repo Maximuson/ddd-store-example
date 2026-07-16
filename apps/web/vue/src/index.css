@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@ddd-store/web-shared/styles/theme.css";
+@source "../shared/**/*.{ts,tsx,vue}";
+@source "./**/*.{ts,vue}";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

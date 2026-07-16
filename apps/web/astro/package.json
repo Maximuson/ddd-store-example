@@ -1,0 +1,31 @@
+{
+  "name": "@ddd-store/web-astro",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "24.18.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint src --ext .ts,.astro"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^7.0.1",
+    "@ddd-store/auth": "*",
+    "@ddd-store/catalog": "*",
+    "@ddd-store/shared": "*",
+    "@ddd-store/users": "*",
+    "@ddd-store/web-shared": "*",
+    "@xstate/store": "^4.2.1",
+    "astro": "^7.0.0",
+    "vue": "3.5.40"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.2",
+    "typescript": "~6.0.3"
+  }
+}

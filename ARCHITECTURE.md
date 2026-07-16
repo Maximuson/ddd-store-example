@@ -10,7 +10,7 @@ This is an educational full-stack monorepo demonstrating:
 |---------|----------------|
 | Domain Driven Design | Bounded contexts in `packages/auth`, `packages/users`, `packages/catalog` |
 | Clean Architecture | `domain` → `application` → `infrastructure` → `presentation` per package |
-| Vertical Slices | Feature folders in `apps/web/src/features/` and `apps/mobile/src/features/` |
+| Vertical Slices | Feature folders in `apps/web/*/src/features/` and `apps/mobile/src/features/` |
 | Monorepo | npm workspaces sharing business logic across web, mobile, API |
 | Repository Pattern | Interfaces in domain, implementations in infrastructure |
 | Dependency Inversion | DI containers in `apps/*/src/di/container.ts` |
@@ -19,9 +19,13 @@ This is an educational full-stack monorepo demonstrating:
 ### Applications
 
 ```
-apps/web     → React + Vite + xstate-store + Tailwind
-apps/mobile  → Expo + SQLite + NativeWind
-apps/api     → NestJS + Prisma + SQLite
+apps/web/shared  → @ddd-store/web-shared (vertical slices: pages, logic, spec)
+apps/web/react   → React 19 + Vite + React Router + xstate-store
+apps/web/vue     → Vue 3.5.40 + Vite + Vue Router
+apps/web/angular → Angular 22 zoneless + signals
+apps/web/astro   → Astro 7 + Vue islands
+apps/mobile      → Expo + SQLite + NativeWind
+apps/api         → NestJS + Prisma + SQLite
 ```
 
 ### Shared Packages

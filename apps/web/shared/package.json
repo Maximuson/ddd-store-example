@@ -1,0 +1,29 @@
+{
+  "name": "@ddd-store/web-shared",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "24.18.0"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./styles/theme.css": "./styles/theme.css",
+    "./shell": "./shell/index.ts",
+    "./auth": "./auth/index.ts",
+    "./auth/pages": "./auth/pages/index.ts",
+    "./catalog": "./catalog/index.ts",
+    "./catalog/pages": "./catalog/pages/index.ts",
+    "./users": "./users/index.ts",
+    "./admin": "./admin/index.ts"
+  },
+  "dependencies": {
+    "@ddd-store/catalog": "*",
+    "@ddd-store/shared": "*",
+    "@ddd-store/users": "*",
+    "@xstate/store": "^4.2.1"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  }
+}

@@ -2,14 +2,28 @@
 
 Educational monorepo demonstrating **Domain Driven Design**, **Clean Architecture**, and **offline-first mobile** patterns.
 
+## Prerequisites
+
+- **Node.js** 24.18.0 (see `.nvmrc`)
+- **TypeScript** 6.x (workspace root devDependency)
+
 ## Quick Start
 
 ```bash
 # Install dependencies
 npm install
 
-# Start web app (port 5173) — mock mode by default
-npm run dev:web
+# Copy env examples for each web app (required before first run)
+cp apps/web/react/.env.example apps/web/react/.env
+cp apps/web/vue/.env.example apps/web/vue/.env
+cp apps/web/angular/.env.example apps/web/angular/.env
+cp apps/web/astro/.env.example apps/web/astro/.env
+
+# Start web apps (mock mode by default)
+npm run dev:web              # React (port 5173)
+npm run dev:web:vue          # Vue (port 5174)
+npm run dev:web:angular      # Angular (port 5175)
+npm run dev:web:astro        # Astro (port 4321)
 
 # Start API (port 3000)
 npm run dev:api
@@ -18,8 +32,7 @@ npm run dev:api
 npm run dev:mobile
 ```
 
-Environment files are in each app folder: `apps/api/.env`, `apps/web/.env`, `apps/mobile/.env`.
-See `.env.example` for reference.
+Environment files live in each app folder. Web apps use `apps/web/<framework>/.env` (copy from `.env.example` in the same folder). API and mobile: see the root [`.env.example`](.env.example).
 
 ## Mock Mode
 
