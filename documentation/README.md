@@ -1,43 +1,26 @@
-# Website
+# Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Docusaurus site for the DDD Store Example architecture docs.
 
-## Installation
+## Local development
+
+From the repository root:
 
 ```bash
 npm install
+npm run dev:docs
 ```
 
-**Note**: feel free to use the package manager of your choice.
-
-## Local Development
-
-```bash
-npm run start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+The dev server runs at http://localhost:3000/ddd-store-example/
 
 ## Build
 
 ```bash
-npm run build
+npm run build:docs
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Output is written to `documentation/build/`.
 
 ## Deployment
 
-Using SSH:
-
-```bash
-USE_SSH=true npm run deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+GitHub Pages deployment is handled by `.github/workflows/deploy-documentation.yml` on push to `main`.
