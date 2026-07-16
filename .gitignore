@@ -1,3 +1,14 @@
 .DS_Store
 node_modules
 .env
+apps/api/.env
+apps/web/.env
+apps/mobile/.env
+dist
+coverage
+*.db
+*.db-journal
+.expo
+.turbo
+apps/api/prisma/dev.db
+apps/api/prisma/dev.db-journal

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "paths": {
+      "@ddd-store/shared": ["./packages/shared/src/index.ts"],
+      "@ddd-store/shared/*": ["./packages/shared/src/*"],
+      "@ddd-store/auth": ["./packages/auth/src/index.ts"],
+      "@ddd-store/auth/*": ["./packages/auth/src/*"],
+      "@ddd-store/users": ["./packages/users/src/index.ts"],
+      "@ddd-store/users/*": ["./packages/users/src/*"],
+      "@ddd-store/catalog": ["./packages/catalog/src/index.ts"],
+      "@ddd-store/catalog/*": ["./packages/catalog/src/*"]
+    }
+  }
+}

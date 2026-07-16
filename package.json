@@ -1,0 +1,38 @@
+{
+  "name": "ddd-store-example",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w @ddd-store/api",
+    "dev:web": "npm run dev -w @ddd-store/web",
+    "dev:mobile": "npm run start -w @ddd-store/mobile",
+    "dev:mobile:ios": "npm run ios -w @ddd-store/mobile",
+    "build": "npm run build -ws --if-present",
+    "test": "npm run test -ws --if-present",
+    "lint": "npm run lint -ws --if-present",
+    "db:generate": "npm run db:generate -w @ddd-store/api",
+    "db:migrate": "npm run db:migrate -w @ddd-store/api",
+    "db:seed": "npm run db:seed -w @ddd-store/api"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "ajv": "^8.12.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-boundaries": "^4.2.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "overrides": {
+    "ajv": "$ajv",
+    "ajv-keywords": {
+      "ajv": "$ajv"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  password  String
+  name      String
+  role      String    @default("USER")
+  createdAt DateTime  @default(now())
+  sessions  Session[]
+  refreshTokens RefreshToken[]
+}
+
+model Session {
+  id             String    @id @default(cuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deviceType     String
+  userAgent      String
+  createdAt      DateTime  @default(now())
+  lastActivityAt DateTime  @default(now())
+  expiresAt      DateTime?
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float
+  image       String
+  category    String
+  createdAt   DateTime @default(now())
+}
