@@ -23,7 +23,9 @@
       "@ddd-store/users": ["./packages/users/src/index.ts"],
       "@ddd-store/users/*": ["./packages/users/src/*"],
       "@ddd-store/catalog": ["./packages/catalog/src/index.ts"],
-      "@ddd-store/catalog/*": ["./packages/catalog/src/*"]
+      "@ddd-store/catalog/*": ["./packages/catalog/src/*"],
+      "@ddd-store/web-shared": ["./apps/web/shared/index.ts"],
+      "@ddd-store/web-shared/*": ["./apps/web/shared/*"]
     }
   }
 }

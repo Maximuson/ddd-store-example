@@ -13,6 +13,3 @@ export {
 // Infrastructure
 export { MockAuthRepository } from './infrastructure/mocks/MockAuthRepository';
 export { HttpAuthRepository } from './infrastructure/api/HttpAuthRepository';
-
-// Presentation
-export { LoginForm } from './presentation/components/LoginForm';

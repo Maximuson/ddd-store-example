@@ -8,8 +8,11 @@ Educational monorepo demonstrating **Domain Driven Design**, **Clean Architectur
 # Install dependencies
 npm install
 
-# Start web app (port 5173) — mock mode by default
-npm run dev:web
+# Start web apps (mock mode by default)
+npm run dev:web              # React (port 5173)
+npm run dev:web:vue          # Vue (port 5174)
+npm run dev:web:angular      # Angular (port 5175, Node >= 22.22.3)
+npm run dev:web:astro        # Astro (port 4321)
 
 # Start API (port 3000)
 npm run dev:api
@@ -18,7 +21,7 @@ npm run dev:api
 npm run dev:mobile
 ```
 
-Environment files are in each app folder: `apps/api/.env`, `apps/web/.env`, `apps/mobile/.env`.
+Environment files are in each app folder: `apps/api/.env`, `apps/web/react/.env`, `apps/mobile/.env`.
 See `.env.example` for reference.
 
 ## Mock Mode

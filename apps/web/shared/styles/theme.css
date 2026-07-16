@@ -1,0 +1,5 @@
+@theme {
+  --color-brand: oklch(55% 0.2 250);
+  --color-brand-dark: oklch(45% 0.2 250);
+  --radius-card: 0.75rem;
+}

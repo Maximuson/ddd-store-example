@@ -3,10 +3,16 @@ node_modules
 .env
 apps/api/.env
 apps/web/.env
+apps/web/react/.env
+apps/web/vue/.env
+apps/web/angular/.env
+apps/web/astro/.env
 apps/mobile/.env
 dist
 coverage
 *.tsbuildinfo
+.angular
+.astro
 *.db
 *.db-journal
 .expo
