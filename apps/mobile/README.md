@@ -2,4 +2,4 @@
 
 Application entry point. Composes packages via dependency injection.
 
-See [docs/](../../docs/) for architecture documentation.
+See [documentation](https://maximuson.github.io/ddd-store-example/) for architecture documentation.
