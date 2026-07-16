@@ -4,7 +4,7 @@ Educational monorepo demonstrating **Domain Driven Design**, **Clean Architectur
 
 ## Prerequisites
 
-- **Node.js** >= 24 (see `.nvmrc`)
+- **Node.js** 24.18.0 (see `.nvmrc`)
 - **TypeScript** 6.x (workspace root devDependency)
 
 ## Quick Start

@@ -24,7 +24,7 @@ Each feature folder (`shell`, `auth`, `catalog`, `users`, `admin`) contains:
 
 Global styles: `styles/theme.css` (Tailwind v4 `@theme` tokens).
 
-Requires **Node.js** >= 24 (see repo `.nvmrc`).
+Requires **Node.js** 24.18.0 (see repo `.nvmrc`).
 
 ## Dev commands
 
